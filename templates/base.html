@@ -2,7 +2,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html class="overflow-x-hidden" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,8 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
-<body>
+<body class="bg-bg_primary">
+    {% include 'partials/_navbar.html' %}
     {% block content %}{% endblock content %}
 
     {% include 'partials/_footer.html' %}
