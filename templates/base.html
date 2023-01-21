@@ -8,11 +8,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom cakes made in the Dallas/Ft.Worth area" />
+    <meta name="author" content="Steve Rios" />
+    <!-- static files -->
+    {% tailwind_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- favicon -->
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
 <body>
+    <header class="masthead-subheading img-fluid" style="padding-top: 5rem; padding-bottom: 1rem;">
+        <img id="riosImage" src="{% static 'img/rios.webp' %}" alt="Rios Family">
+    </header>
     {% block content %}{% endblock content %}
+    {% include 'partials/_footer.html' %}
 </body>
 
 <script src="{% static 'js/htmx.min.js' %}"></script>
