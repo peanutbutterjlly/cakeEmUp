@@ -1,66 +1,70 @@
-from datetime import date, timedelta
+from decouple import config
+from django.contrib.messages.views import SuccessMessageMixin
+from django.core.mail import send_mail
+from django.urls import reverse_lazy
+from django.views.generic import ListView, TemplateView
+from django.views.generic.edit import CreateView
 
-from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV3
-from django import forms
-from django.utils import dateformat
-
-from .models import CustomerSubmission
-
-two_weeks_out = date.today() + timedelta(days=14)
-
-example_date = dateformat.format(
-    two_weeks_out, "D, F jS"
-)  # to use in the help text of the form
+from .forms import SubmitForm
+from .models import CustomerSubmission as Submit
+from .models import Post
 
 
-def present_or_future_date(value):
-    """validator to prevent picking a date earlier than 2 weeks out in the form"""
-    if value < two_weeks_out:
-        raise forms.ValidationError("The date can't be earlier than two weeks")
-    return value
+class IndexView(SuccessMessageMixin, CreateView):
+    """homepage"""
+
+    model = Submit
+    template_name = "bakery/index.html"
+    form_class = SubmitForm
+    success_url = reverse_lazy("bakery:gallery")
+    success_message = "Your request was submitted"
+
+    def get_context_data(self, **kwargs):
+        """passing multiple models to the template"""
+        context = super(IndexView, self).get_context_data(**kwargs)
+        # only grab the 6 latest posts
+        context["posts"] = Post.objects.all()[:6]
+        return context
+
+    def form_valid(self, form):
+        """overwrite the save method to send text upon save"""
+        response = super(IndexView, self).form_valid(form)
+        if form.is_valid():
+            recipients = (config("CHEF"), config("EMAIL_HOST_USER"))
+            send_mail(
+                "ORDER PLACED",
+                "you have an order",
+                config("EMAIL_HOST_USER"),
+                recipient_list=recipients,
+                fail_silently=True,
+            )
+        return response
 
 
-class SubmitForm(forms.ModelForm):
-    """make a form created for the submit request"""
+class GalleryView(ListView):
+    """gallery page to see all the photos"""
 
-    image = forms.ImageField(
-        required=False,
-        widget=forms.ClearableFileInput(attrs={"multiple": True}),
-        help_text="(Optional)",
-    )
-    date_needed = forms.DateField(
-        help_text=f"(Optional) Please select a date at least 2 weeks out; e.g.: {example_date}",
-        validators=[present_or_future_date],
-        widget=forms.DateInput(
-            attrs={
-                "class": "datepicker",
-                "type": "date",
-            }
-        ),
-        required=False,
-    )
-    delivery = forms.BooleanField(required=False, help_text="(Optional)")
-    topyenoh = forms.CharField(
-        widget=forms.HiddenInput, required=False, label="leave empty"
-    )
-    name_field = forms.CharField(max_length=100, label="Name")
-    captcha = ReCaptchaField(widget=ReCaptchaV3)
+    model = Post
+    context_object_name = "posts"  # variable name passed to the template
+    template_name = "bakery/gallery.html"
 
-    class Meta:
-        model = CustomerSubmission
-        fields = [
-            "name",
-            "email",
-            "phone",
-            "message",
-            "delivery",
-            "date_needed",
-            "image",
-        ]
 
-    def clean_topyenoh(self):
-        topyenoh = self.cleaned_data["topyenoh"]
-        if len(topyenoh):
-            raise forms.ValidationError("honeypot should be left empty. Bad bot!")
-        return topyenoh
+class FormView(SuccessMessageMixin, CreateView):
+    """form page to submit an order"""
+
+    model = Submit
+    template_name = "bakery/form.html"
+    form_class = SubmitForm
+    success_url = reverse_lazy("bakery:gallery")
+    success_message = "Your request was submitted"
+
+    def form_valid(self, form):
+        """overwrite the save method to send text upon save"""
+        response = super(FormView, self).form_valid(form)
+        return response
+
+
+class PricingView(TemplateView):
+    """pricing page"""
+
+    template_name = "bakery/pricing.html"
