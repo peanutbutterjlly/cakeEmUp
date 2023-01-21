@@ -26,3 +26,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 MEDIA_ROOT = BASE_DIR / "media"
 
 MEDIA_URL = "/media/"
+
+SECURE_SSL_REDIRECT = False
+
+SECURE_HSTS_SECONDS = 0
+
+SESSION_COOKIE_SECURE = False
+
+CSRF_COOKIE_SECURE = False
