@@ -55,8 +55,4 @@ DATABASES = {
     }
 }
 
-MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
-
 SECURE_SSL_REDIRECT = True
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
