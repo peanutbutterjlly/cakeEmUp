@@ -1,0 +1,33 @@
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        {{ form.name }}
+        {{ form.email }}
+        {{ form.phone }}
+        {{ form.message }}
+        {{ form.delivery }}
+        {{ form.date_needed }}
+        {{ form.image }}
+        {{ form.topyenoh }}
+        {{ form.captcha }}
+    </fieldset>
+
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for field in form %}
+        {% for error in field.errors %}
+        {{ error }}
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="form-group">
+        <button class="btn btn-lg btn-primary" type="submit">Send</button>
+    </div>
+</form>
+<small class="small-text">
+    This site is protected by reCAPTCHA and the Google
+    <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+    <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+</small>
