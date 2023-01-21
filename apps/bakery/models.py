@@ -46,7 +46,7 @@ class CustomerSubmission(TimeStampedModel):
     phone = models.CharField(max_length=15)
     message = models.TextField()
     image = models.ImageField(blank=True, upload_to="img/request/")
-    delivery = models.BooleanField()
+    delivery = models.BooleanField(default=False)
     date_needed = models.DateField(null=True, blank=True)
 
     def __str__(self):

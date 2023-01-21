@@ -1,15 +1,54 @@
-<form action="" method="POST" enctype="multipart/form-data">
+<form class="mx-4" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <fieldset class="w-8">
+    <fieldset>
+        <!-- make a form with the following fields 
         {{ form.name }}
         {{ form.email }}
         {{ form.phone }}
-        <!-- {{ form.message }} -->
+        {{ form.message }}
         {{ form.delivery }}
         {{ form.date_needed }}
         {{ form.image }}
         {{ form.topyenoh }}
+        {{ form.captcha }} -->
+        <label for="name">Name</label>
+        <div class="mb-4">
+            <input class="border rounded w-11/12" type="text" name="name" id="name" placeholder="Name" maxlength="100"
+                required>
+        </div>
+        <label for="email">Email</label>
+        <div class="mb-4">
+            <input class="border rounded w-11/12" type="email" name="email" id="email" placeholder="Email"
+                maxlength="100" required>
+        </div>
+        <label for="phone">Phone</label>
+        <div class="mb-4">
+            <input class="border rounded w-11/12" type="tel" name="phone" id="phone" placeholder="Phone" maxlength="15"
+                required>
+        </div>
+        <label for="message">Message</label>
+        <div class="mb-4">
+            <textarea class="border rounded w-11/12 h-32" name="message" id="message" placeholder="Message"
+                maxlength="1000" required></textarea>
+        </div>
+        <label for="delivery">Delivery</label>
+        <div class="mb-4">
+            <input class="border rounded" type="checkbox" name="delivery" id="delivery" placeholder="Delivery">
+            <span class="text-gray-500 text-sm">{{ form.delivery.help_text }}</>
+        </div>
+        <label for="date_needed">Date Needed</label>
+        <div class="mb-4">
+            <input class="border rounded" type="date" name="date_needed" id="date_needed" placeholder="Date Needed">
+            <div class="text-gray-500 text-sm">{{ form.date_needed.help_text }}</div>
+        </div>
+        <label for="image">Image</label>
+        <div class="mb-4">
+            <input type="file" name="image" id="image" placeholder="Image">
+            <div class="text-gray-500 text-sm">{{ form.image.help_text }}</div>
+        </div>
+        {{ form.topyenoh }}
         {{ form.captcha }}
+
     </fieldset>
 
     {% if form.errors %}
@@ -22,12 +61,15 @@
     </div>
     {% endif %}
 
-    <div class="form-group">
-        <button class="btn btn-lg btn-primary" type="submit">Send</button>
+    <div class="mb-4">
+        <button
+            class="bg-bg_secondary text-white gap-1 mx-auto rounded border border-white py-1.5 px-3 hover:bg-bg_primary">
+            Send
+        </button>
     </div>
 </form>
-<small class="small-text">
+<p class="text-gray-500 text-xs ml-1">
     This site is protected by reCAPTCHA and the Google
     <a href="https://policies.google.com/privacy">Privacy Policy</a> and
     <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-</small>
+</p>
