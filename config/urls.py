@@ -20,6 +20,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path(config("ADMIN_URL"), admin.site.urls),
+    path("", include("apps.bakery.urls")),
 ]
 
 if settings.DEBUG:

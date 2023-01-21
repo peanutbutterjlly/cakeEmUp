@@ -28,19 +28,15 @@ ALLOWED_HOSTS: list = config(
 # Application definition
 
 INSTALLED_APPS = [
+    "apps.bakery",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-]
-
-LOCAL_APPS: list = [
-    "apps.bakery",
-]
-
-THIRD_PARTY_APPS = [
+    "captcha",
+    "storages",
     "tailwind",
     "apps.theme",
 ]
@@ -51,7 +47,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
