@@ -1,0 +1,65 @@
+<form class="px-4" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <label for="name">Name</label>
+        <div class="mb-4">
+            <input class="border rounded border-gray-300 w-11/12" type="text" name="name" id="name" maxlength="100"
+                required>
+        </div>
+        <label for="email">Email</label>
+        <div class="mb-4">
+            <input class="border rounded border-gray-300 w-11/12" type="email" name="email" id="email" maxlength="100"
+                required>
+        </div>
+        <label for="phone">Phone</label>
+        <div class="mb-4">
+            <input class="border rounded border-gray-300 w-11/12" type="tel" name="phone" id="phone" maxlength="15"
+                required>
+        </div>
+        <label for="message">Message</label>
+        <div class="mb-4">
+            <textarea class="border rounded border-gray-300 w-11/12 h-32" name="message" id="message" maxlength="1000"
+                required></textarea>
+        </div>
+        <label for="delivery">Delivery</label>
+        <div class="mb-4">
+            <input class="border rounded border-gray-300" type="checkbox" name="delivery" id="delivery">
+            <span class="text-gray-500 text-xs">{{ form.delivery.help_text }}</>
+        </div>
+        <label for="date_needed">Date Needed</label>
+        <div class="mb-4">
+            <input class="border rounded border-gray-300 w-11/12" type="date" name="date_needed" id="date_needed">
+            <div class="text-gray-500 text-xs pt-1">{{ form.date_needed.help_text }}</div>
+        </div>
+        <label for="image">Image</label>
+        <div class="mb-4">
+            <input type="file" name="image" id="image" placeholder="Image">
+            <div class="text-gray-500 text-xs">{{ form.image.help_text }}</div>
+        </div>
+        {{ form.topyenoh }}
+        {{ form.captcha }}
+
+    </fieldset>
+
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        {% for field in form %}
+        {% for error in field.errors %}
+        {{ error }}
+        {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mb-4">
+        <button
+            class="bg-bg_secondary text-white gap-1 mx-auto rounded border border-white py-1.5 px-3 hover:bg-bg_primary">
+            Send
+        </button>
+    </div>
+</form>
+<p class="text-gray-500 text-xs px-4">
+    This site is protected by reCAPTCHA and the Google
+    <a class="text-bg_secondary" href="https://policies.google.com/privacy">Privacy Policy</a> and
+    <a class="text-bg_secondary" href="https://policies.google.com/terms">Terms of Service</a> apply.
+</p>

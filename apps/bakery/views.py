@@ -23,11 +23,11 @@ class IndexView(SuccessMessageMixin, CreateView):
         """passing multiple models to the template"""
         context = super(IndexView, self).get_context_data(**kwargs)
         # only grab the 6 latest posts
-        context["posts"] = Post.objects.all()[:6]
+        context["cakes"] = Post.objects.all()[:6]
         return context
 
     def form_valid(self, form):
-        """overwrite the save method to send text upon save"""
+        """overwrite the save method to send an email upon save"""
         response = super(IndexView, self).form_valid(form)
         if form.is_valid():
             recipients = (config("CHEF"), config("EMAIL_HOST_USER"))
