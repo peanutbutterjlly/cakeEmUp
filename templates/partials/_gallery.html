@@ -34,15 +34,33 @@
 {% include 'partials/_modals.html' %}
 
 <script>
+
+    const body = document.getElementById("body");
+
     function showModal(slug) {
         const modal = document.getElementById(slug);
         modal.classList.add("block");
         modal.classList.remove("hidden");
+        body.classList.add("blur-sm");
     }
 
     function closeModal(slug) {
         const modal = document.getElementById(slug);
+        body.classList.remove("blur-sm");
         modal.classList.add("hidden");
         modal.classList.remove("block");
     }
+
+    // TODO here Steve
+    body.addEventListener('keyup', () => {
+        if (event.key === 'Escape') {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (modal.classList.contains('block')) {
+                    closeModal(modal.id);
+                }
+            });
+        }
+    })
+
 </script>
