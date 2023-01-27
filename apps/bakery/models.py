@@ -3,6 +3,7 @@ from datetime import date, timedelta
 from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
+from PIL import Image
 
 two_weeks_out = date.today() + timedelta(days=14)
 
@@ -36,6 +37,17 @@ class PostImage(models.Model):
 
     def __str__(self):
         return self.post.title
+
+    def save(self, *args, **kwargs) -> None:
+        """resize image to 800px wide and save as webp"""
+        super().save(*args, **kwargs)
+        with Image.open(self.images.path) as img:
+            width, height = img.size
+            target_width = 300
+            h_coefficient = width / target_width
+            target_height = int(height / h_coefficient)
+            img = img.resize((target_width, target_height), Image.ANTIALIAS)
+            img.save(self.images.path, "webp", optimize=True, quality=99)
 
 
 class CustomerSubmission(TimeStampedModel):

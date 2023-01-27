@@ -9,13 +9,13 @@
         </svg>
         <hr class="w-28 h-1 my-4 bg-bg_secondary border-0 rounded md:my-10" />
     </div>
-    <div class="flex flex-wrap gap-4 justify-center">
+    <div class="flex flex-wrap gap-4 justify-center items-center">
         {% for cake in cakes %}
         <!-- modal toggle and images -->
         <div class="w-4/6 md:w-1/3 lg:w-1/4" onclick="showModal(`{{ cake.slug }}`)">
             {% for pic in cake.images.all %}
             {% if forloop.first %}
-            <img class="rounded" loading="lazy" src="{{ pic.images.url }}" alt="{{ cake.title }}">
+            <img class="rounded mx-auto" loading="lazy" src="{{ pic.images.url }}" alt="{{ cake.title }}">
             {% endif %}
             {% endfor %}
         </div>
@@ -31,6 +31,12 @@
 </section>
 
 <!-- modals -->
+<dialog class="modal p-4 text-center">
+    <h2>title</h2>
+    <p class="p-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae maiores illo neque temporibus.
+        Voluptatum et odio
+        officiis consequuntur pariatur dolorum.</p>
+</dialog>
 {% include 'partials/_modals.html' %}
 
 <script>
@@ -39,31 +45,12 @@
 
     function showModal(slug) {
         const modal = document.getElementById(slug);
-        modal.classList.add("flex");
-        modal.classList.remove("hidden");
+        modal.showModal();
     }
 
     function closeModal(slug) {
         const modal = document.getElementById(slug);
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
+        modal.close();
     }
-
-    // TODO here Steve
-    document.addEventListener('keyup', () => {
-        if (event.key === 'Escape') {
-            console.log('escape');
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (modal.classList.contains('flex')) {
-                    closeModal(modal.id);
-                }
-            });
-        }
-    });
-
-    body.addEventListener('click', () => {
-        return;
-    })
 
 </script>
