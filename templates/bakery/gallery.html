@@ -5,7 +5,8 @@
 
 {% if messages %}
 {% for message in messages %}
-<div class="py-5 text-slate-900 mx-auto text-center">
+<div
+    class="py-5 text-slate-900 mt-8 mx-auto px-6 text-center bg-green-500 max-w-fit border rounded-lg border-slate-900">
     {{ message }}
 </div>
 {% endfor %}
@@ -14,7 +15,7 @@
 <div class="flex flex-col gap-4 py-7 px-28 items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-3">
     {% for post in posts %}
     {% for pic in post.images.all %}
-    <img src="{{ pic.images.url }}" alt="{{ pic.images.name }}" class="max-w-min" loading="lazy">
+    <img src="{{ pic.images.url }}" alt="{{ pic.images.name }}" class="max-w-min border-0 rounded-lg" loading="lazy">
     {% endfor %}
     {% endfor %}
 </div>

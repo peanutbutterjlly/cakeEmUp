@@ -1,4 +1,4 @@
-import os
+from decouple import config
 
 from .base import *
 
@@ -20,11 +20,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", cast=str)
 
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY", cast=str)
 
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME", cast=str)
 
 AWS_S3_FILE_OVERWRITE = False
 

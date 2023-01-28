@@ -33,7 +33,7 @@ class IndexView(SuccessMessageMixin, CreateView):
             recipients = (config("CHEF"), config("EMAIL_HOST_USER"))
             send_mail(
                 "ORDER PLACED",
-                "you have an order",
+                f"you have an order from {form.cleaned_data['name']}.",
                 config("EMAIL_HOST_USER"),
                 recipient_list=recipients,
                 fail_silently=True,

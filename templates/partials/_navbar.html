@@ -15,10 +15,12 @@
                 d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
         </svg>
     </button>
-    <!-- <ul class="hidden">
-        <li class="mx-2"><a href="" class="text-white">Home</a></li>
-        <li class="mx-2"><a href="" class="text-white">About</a></li>
-        <li class="mx-2"><a href="" class="text-white">Gallery</a></li>
-        <li class="mx-2"><a href="" class="text-white>">Contact</a></li>
-    </ul> -->
 </nav>
+<div id="menu-items" class="hidden justify-end pr-2">
+    <ul class="flex flex-col gap-2 px-2 text-center fixed bg-bg_secondary rounded-b-lg">
+        <li class="mx-2"><a href="{% url 'bakery:home' %}" class="text-white">Home</a></li>
+        <li class="mx-2"><a href="" class="text-white">About</a></li>
+        <li class="mx-2"><a href="{% url 'bakery:gallery' %}" class="text-white">Gallery</a></li>
+        <li class="mx-2 pb-2"><a href="" class="text-white">Contact</a></li>
+    </ul>
+</div>

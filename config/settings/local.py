@@ -35,6 +35,6 @@ SESSION_COOKIE_SECURE = False
 
 CSRF_COOKIE_SECURE = False
 
-# DEBUG_TOOLBAR_CONFIG = {
-#     "SHOW_TOOLBAR_CALLBACK": lambda r: False,  # disables it
-# }
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda r: False,  # disables it
+}
