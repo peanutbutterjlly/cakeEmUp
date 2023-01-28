@@ -17,10 +17,12 @@
     </button>
 </nav>
 <div id="menu-items" class="hidden justify-end pr-2">
-    <ul class="flex flex-col gap-2 px-2 text-center fixed bg-bg_secondary rounded-b-lg">
+    <ul class="flex flex-col gap-2 px-3 text-center fixed bg-bg_secondary rounded-b-lg">
+        {% if not home %}
         <li class="mx-2"><a href="{% url 'bakery:home' %}" class="text-white">Home</a></li>
-        <li class="mx-2"><a href="" class="text-white">About</a></li>
+        {% endif %}
+        <li class="mx-2"><a href="" class="text-white">Pricing</a></li>
         <li class="mx-2"><a href="{% url 'bakery:gallery' %}" class="text-white">Gallery</a></li>
-        <li class="mx-2 pb-2"><a href="" class="text-white">Contact</a></li>
+        <li class="mx-2 pb-2"><a href="" class="text-white">Quote</a></li>
     </ul>
 </div>

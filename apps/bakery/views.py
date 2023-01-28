@@ -24,6 +24,7 @@ class IndexView(SuccessMessageMixin, CreateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         # only grab the 6 latest posts
         context["cakes"] = Post.objects.all()[:6]
+        context["home"] = True
         return context
 
     def form_valid(self, form):
