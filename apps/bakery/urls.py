@@ -10,7 +10,7 @@ urlpatterns: list = [
     path("form/", FormView.as_view(), name="form"),
     path(
         "pricing/",
-        PricingView.as_view(template_name="bakery/pricing.html"),
+        PricingView.as_view(),
         name="pricing",
     ),
 ]

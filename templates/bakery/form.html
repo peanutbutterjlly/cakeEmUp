@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block content %}
+
+<div class="flex flex-column justify-center py-10">
+    <!-- Masthead Subheading-->
+    <p class="leading-normal font-medium text-lg text-white text-center px-10">If you're interested in a cake, send
+        a
+        request via the
+        form below or <a class="text-bg_secondary" href="http://m.me/cakeemup" target="_blank">
+            message me on Facebook
+        </a>. Please be sure to look at the <a class="text-bg_secondary" href="{% url 'bakery:pricing' %}">pricing
+            page</a> to get a base idea of
+        how I price my cakes.
+        Also note that I'd like at least a 2 week lead time. I hope to hear from you soon!!! 🙃🍰💝</p>
+</div>
+
+{% include 'partials/_contact.html' %}
+
+
+{% endblock content %}

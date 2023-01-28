@@ -57,11 +57,20 @@ class FormView(SuccessMessageMixin, CreateView):
     template_name = "bakery/form.html"
     form_class = SubmitForm
     success_url = reverse_lazy("bakery:gallery")
-    success_message = "Your request was submitted"
+    success_message = "Your request was successfully submitted"
 
     def form_valid(self, form):
-        """overwrite the save method to send text upon save"""
+        """overwrite the save method to send an email upon save"""
         response = super(FormView, self).form_valid(form)
+        if form.is_valid():
+            recipients = (config("CHEF"), config("EMAIL_HOST_USER"))
+            send_mail(
+                "ORDER PLACED",
+                f"you have an order from {form.cleaned_data['name']}.",
+                config("EMAIL_HOST_USER"),
+                recipient_list=recipients,
+                fail_silently=True,
+            )
         return response
 
 
