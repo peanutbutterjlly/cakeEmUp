@@ -3,15 +3,15 @@ from datetime import date, timedelta
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
 from django import forms
+from django.conf import settings
 from django.utils import dateformat
 
 from .models import CustomerSubmission
 
-two_weeks_out = date.today() + timedelta(days=14)
+two_weeks_out: date = date.today() + timedelta(days=14)
 
-example_date = dateformat.format(
-    two_weeks_out, "D, F jS"
-)  # to use in the help text of the form
+# to use in the help text of the form
+example_date: str = dateformat.format(two_weeks_out, "D, F jS")
 
 
 def present_or_future_date(value):
@@ -22,7 +22,7 @@ def present_or_future_date(value):
 
 
 class SubmitForm(forms.ModelForm):
-    """make a form created for the submit request"""
+    """customer user form to submit a cake request"""
 
     image = forms.ImageField(
         required=False,
@@ -44,8 +44,8 @@ class SubmitForm(forms.ModelForm):
     topyenoh = forms.CharField(
         widget=forms.HiddenInput, required=False, label="leave empty"
     )
-    name_field = forms.CharField(max_length=100, label="Name")
-    captcha = ReCaptchaField(widget=ReCaptchaV3)
+    if not settings.DEBUG:
+        captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     class Meta:
         model = CustomerSubmission

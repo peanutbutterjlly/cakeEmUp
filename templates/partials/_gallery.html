@@ -12,10 +12,11 @@
     <div class="flex flex-wrap gap-4 justify-center items-center">
         {% for cake in cakes %}
         <!-- modal toggle and images -->
-        <div class="w-4/6 md:w-1/3 lg:w-1/4" onclick="showModal(`{{ cake.slug }}`)">
+        <div class="w-4/6 md:w-1/3 lg:w-1/4">
             {% for pic in cake.images.all %}
             {% if forloop.first %}
-            <img class="rounded mx-auto" loading="lazy" src="{{ pic.images.url }}" alt="{{ cake.title }}">
+            <img class="rounded mx-auto" onclick="showModal(`{{ cake.slug }}`)" loading="lazy"
+                src="{{ pic.images.url }}" alt="{{ cake.title }}">
             {% endif %}
             {% endfor %}
         </div>
@@ -25,18 +26,14 @@
         <button
             class="bg-bg_secondary text-white gap-1 mx-auto rounded-md border border-white py-2 px-4 hover:bg-bg_primary"
             id="menu-btn" hx-target="#menu">
-            <span>Gallery</span>
+            <span>
+                <a href="{% url 'bakery:gallery' %}">Gallery</a>
+            </span>
         </button>
     </div>
 </section>
 
 <!-- modals -->
-<dialog class="modal p-4 text-center">
-    <h2>title</h2>
-    <p class="p-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae maiores illo neque temporibus.
-        Voluptatum et odio
-        officiis consequuntur pariatur dolorum.</p>
-</dialog>
 {% include 'partials/_modals.html' %}
 
 <script>

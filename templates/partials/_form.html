@@ -1,4 +1,4 @@
-<form class="px-4" action="" method="POST" enctype="multipart/form-data">
+<form class="px-4 text-slate-900" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <fieldset>
         <label for="name">Name</label>
@@ -37,7 +37,9 @@
             <div class="text-gray-500 text-xs">{{ form.image.help_text }}</div>
         </div>
         {{ form.topyenoh }}
+        {% if not debug %}
         {{ form.captcha }}
+        {% endif %}
 
     </fieldset>
 
@@ -45,7 +47,7 @@
     <div class="alert alert-danger" role="alert">
         {% for field in form %}
         {% for error in field.errors %}
-        {{ error }}
+        <p class="text-red-500 text-xs">{{ field.label }}: {{ error }}</p>
         {% endfor %}
         {% endfor %}
     </div>

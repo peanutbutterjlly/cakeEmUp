@@ -1,6 +1,10 @@
 {% load static %}
 <nav class="bg-bg_secondary flex justify-between text-xl sticky top-0 z-50 py-3 px-2 align-middle max-w-full">
-    <h1 class="text-white pt-1 font-bold">CAKE EM UP</h1>
+    <h1 class="text-white pt-1 font-bold">
+        {% block link %}
+        <a href="{% url 'bakery:home' %}">CAKE EM UP</a>
+        {% endblock link %}
+    </h1>
     <button
         class="bg-dark_pink text-white flex align-middle gap-1 rounded-md border border-white py-1 px-2 hover:bg-bg_primary"
         id="menu-btn" hx-target="#menu">

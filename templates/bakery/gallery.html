@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="py-5 text-slate-900 mx-auto text-center">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="flex flex-col gap-4 py-7 px-28 items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-3">
+    {% for post in posts %}
+    {% for pic in post.images.all %}
+    <img src="{{ pic.images.url }}" alt="{{ pic.images.name }}" class="max-w-min" loading="lazy">
+    {% endfor %}
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

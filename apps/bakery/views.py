@@ -17,7 +17,7 @@ class IndexView(SuccessMessageMixin, CreateView):
     template_name = "bakery/index.html"
     form_class = SubmitForm
     success_url = reverse_lazy("bakery:gallery")
-    success_message = "Your request was submitted"
+    success_message = "Your request was successfully submitted"
 
     def get_context_data(self, **kwargs):
         """passing multiple models to the template"""

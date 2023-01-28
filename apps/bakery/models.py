@@ -39,7 +39,6 @@ class PostImage(models.Model):
         return self.post.title
 
     def save(self, *args, **kwargs) -> None:
-        """resize image to 800px wide and save as webp"""
         super().save(*args, **kwargs)
         with Image.open(self.images.path) as img:
             width, height = img.size
