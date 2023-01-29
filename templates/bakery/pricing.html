@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pricing{% endblock %}
+
+{% block content %}
+<section class="mx-1 my-10">
+    <table class="table-auto p-1 mx-2 border-2 bg-bg_secondary border-white rounded-lg flex flex-col text-white shadow">
+        <thead>
+            <tr>
+                <td colspan="2">
+                    <h1 class="text-3xl font-bold">CAKE POPS</h1>
+                </td>
+            </tr>
+        </thead>
+        <tbody class="text-xs pt-2 font-medium">
+            <tr class="flex justify-between">
+                <td>PLAIN (SINGLE COLOR W/ DRIZZLE)</td>
+                <td>$24/DOZEN</td>
+            </tr>
+            <tr class="flex justify-between pt-4">
+                <td>THEMED (SPECIALIZED SPRINKLES OR FONDANT DETAILS)</td>
+                <td class="text-right">STARTING AT $30/DOZEN</td>
+            </tr>
+        </tbody>
+    </table>
+    <table
+        class="table-auto p-1 mx-2 my-8 border-2 bg-bg_secondary border-white rounded-lg flex flex-col text-white shadow">
+        <thead>
+            <tr>
+                <td colspan="2">
+                    <h1 class="text-3xl font-bold">MINI CAKESICLES</h1>
+                </td>
+            </tr>
+        </thead>
+        <tbody class="text-xs pt-2 font-medium">
+            <tr class="flex justify-between">
+                <td>
+                    PLAIN (ONE COLOR W/ DRIZZLE)
+                </td>
+                <td>
+                    $30/DOZEN
+                </td>
+            </tr>
+            <tr class="flex justify-between pt-4">
+                <td>THEMED (SPECIALIZED SPRINKLES OR FONDANT DETAILS)</td>
+                <td class="text-right">STARTING AT $36/DOZEN</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table-auto p-1 mx-2 border-2 bg-bg_secondary border-white rounded-lg flex flex-col text-white shadow">
+        <thead>
+            <tr>
+                <td colspan="2">
+                    <h1 class="text-3xl font-bold">LARGE CAKESICLES</h1>
+                </td>
+            </tr>
+        </thead>
+        <tbody class="text-xs pt-2 font-medium">
+            <tr class="flex justify-between">
+                <td>PLAIN (SINGLE COLOR W/ DRIZZLE)</td>
+                <td>$36/DOZEN</td>
+            </tr>
+            <tr class="flex justify-between pt-4">
+                <td>THEMED (SPECIALIZED SPRINKLES OR FONDANT DETAILS)</td>
+                <td class="text-right">STARTING AT $42/DOZEN</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="bg-white pt-10 pb-7">
+    <div class="flex flex-col text-center text-stone-700">
+        <div class="shadow-md border rounded-lg border-slate-300 mx-5">
+            <div class="bg-bg_primary rounded-t-lg px-5 py-3">
+                <h4 class="text-lg">Level 1 Cakes</h4>
+            </div>
+            <div class="pt-4">
+                <p class="text-sm font-light">starting at</p>
+                <p class="text-4xl font-semibold">$100</p>
+                <ul class="my-4">
+                    <li>Single Tier Cakes</li>
+                    <li>Ice Cream Cakes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="shadow-md border rounded-lg border-slate-300 my-6 mx-5">
+            <div class="bg-bg_primary rounded-t-lg px-5 py-3">
+                <h4 class="text-lg">Level 2 Cakes</h4>
+            </div>
+            <div class="pt-4">
+                <p class="text-sm font-light">starting at</p>
+                <p class="text-4xl font-semibold">$200</p>
+                <ul class="my-4">
+                    <li>Two Tier Cakes</li>
+                    <li>Fondant Covered Cakes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="shadow-md border rounded-lg border-slate-300 mb-6 mx-5">
+            <div class="bg-bg_primary rounded-t-lg px-5 py-3">
+                <h4 class="text-lg">Level 3 Cakes</h4>
+            </div>
+            <div class="pt-4">
+                <p class="text-sm font-light">starting at</p>
+                <p class="text-4xl font-semibold">$350</p>
+                <ul class="my-4">
+                    <li>Three Tier Cakes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="shadow-md border rounded-lg border-slate-300 mx-5">
+            <div class="bg-bg_primary rounded-t-lg px-5 py-3">
+                <h4 class="text-lg">Grand Level</h4>
+            </div>
+            <div class="pt-4">
+                <p class="text-sm font-light">starting at</p>
+                <p class="text-4xl font-semibold">$500</p>
+                <ul class="my-4">
+                    <li>Wedding Cakes</li>
+                    <li>Quincinera Cakes</li>
+                    <li>Sweet 16 Cakes</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="bg-dark_pink border max-w-max text-white font-bold mt-10 mx-auto py-2 px-4 rounded my-4">
+            <a href="{% url 'bakery:form' %}">Contact Us</a>
+        </button>
+    </div>
+</section>
+{% endblock %}

@@ -1,5 +1,6 @@
 {% load static %}
-<nav class="bg-bg_secondary flex justify-between text-xl sticky top-0 z-50 py-3 px-2 align-middle max-w-full">
+<nav
+    class="bg-bg_secondary flex justify-between border-b border-b-white text-xl sticky top-0 z-50 py-3 px-2 align-middle max-w-full">
     <h1 class="text-white pt-1 font-bold">
         <a href="{% url 'bakery:home' %}">CAKE EM UP</a>
     </h1>
@@ -15,11 +16,12 @@
     </button>
 </nav>
 <div id="menu-items" class="hidden justify-end pr-2">
-    <ul class="flex flex-col gap-2 px-3 text-center fixed bg-bg_secondary rounded-b-lg">
+    <ul
+        class="flex flex-col gap-2 px-3 text-center border-b border-r border-l border-b-white border-l-white border-r-white fixed bg-bg_secondary rounded-b-lg">
         {% if not home %}
         <li class="mx-2"><a href="{% url 'bakery:home' %}" class="text-white">Home</a></li>
         {% endif %}
-        <li class="mx-2"><a href="" class="text-white">Pricing</a></li>
+        <li class="mx-2"><a href="{% url 'bakery:pricing' %}" class="text-white">Pricing</a></li>
         <li class="mx-2"><a href="{% url 'bakery:gallery' %}" class="text-white">Gallery</a></li>
         <li class="mx-2 pb-2"><a href="{% url 'bakery:form' %}" class="text-white">Quote</a></li>
     </ul>
