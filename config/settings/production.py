@@ -2,6 +2,12 @@ from decouple import config
 
 from .base import *
 
+ALLOWED_HOSTS += [
+    "cakeemup.com",
+    "www.cakeemup.com",
+    "*.cakeemup.com",
+]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
