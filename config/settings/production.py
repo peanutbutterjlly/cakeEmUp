@@ -32,11 +32,14 @@ AWS_DEFAULT_ACL = None
 
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com"
 
-STATIC_URL = f"{AWS_S3_CUSTOM_DOMAIN}/static/"
-
-STATICFILES_STORAGE = "cake_order_project.backends.StaticStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
+
+MIDDLEWARE.insert(
+    1,
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+)
 
 DEFAULT_FILE_STORAGE = "cake_order_project.backends.MediaStorage"
 
@@ -54,5 +57,15 @@ DATABASES = {
         "HOST": config("DB_HOST", cast=str),
     }
 }
+
+EMAIL_HOST = config("EMAIL_HOST")
+
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
 
 SECURE_SSL_REDIRECT = True

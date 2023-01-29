@@ -1,0 +1,6 @@
+{% if not home %}
+<li class="mx-2"><a href="{% url 'bakery:home' %}" class="text-white">Home</a></li>
+{% endif %}
+<li class="mx-2"><a href="{% url 'bakery:pricing' %}" class="text-white">Pricing</a></li>
+<li class="mx-2"><a href="{% url 'bakery:gallery' %}" class="text-white">Gallery</a></li>
+<li class="mx-2 pb-2"><a href="{% url 'bakery:form' %}" class="text-white">Quote</a></li>

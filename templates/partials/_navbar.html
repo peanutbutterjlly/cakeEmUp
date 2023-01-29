@@ -1,11 +1,11 @@
 {% load static %}
 <nav
     class="bg-bg_secondary flex justify-between border-b border-b-white text-xl sticky top-0 z-50 py-3 px-2 align-middle max-w-full">
-    <h1 class="text-white pt-1 font-bold">
+    <h1 class="text-white pt-1 font-bold lg:text-2xl">
         <a href="{% url 'bakery:home' %}">CAKE EM UP</a>
     </h1>
     <button
-        class="bg-dark_pink text-white flex align-middle gap-1 rounded-md border border-white py-1 px-2 hover:bg-bg_primary"
+        class="bg-dark_pink text-white flex align-middle gap-1 rounded-md border border-white py-1 px-2 hover:bg-bg_primary lg:hidden"
         id="menu-btn" hx-target="#menu">
         <span>Menu</span>
         <svg class="text-white fill-current pt-1 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -14,15 +14,14 @@
                 d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
         </svg>
     </button>
+    <div id="menu" class="hidden lg:flex justify-end pr-2 lg:text-xl">
+        <ul class="flex flex-row gap-4 px-3 text-center">
+            {% include 'partials/_menu_links.html' %}
+        </ul>
 </nav>
 <div id="menu-items" class="hidden justify-end pr-2">
     <ul
         class="flex flex-col gap-2 px-3 text-center border-b border-r border-l border-b-white border-l-white border-r-white fixed bg-bg_secondary rounded-b-lg">
-        {% if not home %}
-        <li class="mx-2"><a href="{% url 'bakery:home' %}" class="text-white">Home</a></li>
-        {% endif %}
-        <li class="mx-2"><a href="{% url 'bakery:pricing' %}" class="text-white">Pricing</a></li>
-        <li class="mx-2"><a href="{% url 'bakery:gallery' %}" class="text-white">Gallery</a></li>
-        <li class="mx-2 pb-2"><a href="{% url 'bakery:form' %}" class="text-white">Quote</a></li>
+        {% include 'partials/_menu_links.html' %}
     </ul>
 </div>

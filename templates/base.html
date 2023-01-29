@@ -26,14 +26,6 @@
     {% include 'partials/_footer.html' %}
 </body>
 
-<script src="{% static 'js/htmx.min.js' %}"></script>
-<script>
-    const menuButton = document.getElementById("menu-btn");
-    const menuItems = document.getElementById("menu-items");
-    menuButton.addEventListener("click", () => {
-        menuItems.classList.toggle("hidden");
-        menuItems.classList.toggle("flex");
-    });
-</script>
+<script src="{% static 'js/scripts.js'  %}"></script>
 
 </html>
