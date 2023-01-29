@@ -50,8 +50,7 @@ CSRF_COOKIE_SECURE = True
 
 CSRF_COOKIE_HTTPONLY = True
 
-DEFAULT_FILE_STORAGE = "cake_order_project.backends.MediaStorage"
-
+DEFAULT_FILE_STORAGE = "config.backends.MediaStorage"
 
 DEBUG = False
 
@@ -89,5 +88,3 @@ MIDDLEWARE += [
 ]
 
 SECURE_SSL_REDIRECT = True
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
