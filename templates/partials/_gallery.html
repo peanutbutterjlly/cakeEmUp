@@ -15,7 +15,7 @@
         <div class="w-4/6 md:w-1/3 lg:w-1/4">
             {% for pic in cake.images.all %}
             {% if forloop.first %}
-            <img class="rounded mx-auto" onclick="showModal(`{{ cake.slug }}`)" loading="lazy"
+            <img class="rounded mx-auto" width="300" onclick="showModal(`{{ cake.slug }}`)" loading="lazy"
                 src="{{ pic.images.url }}" alt="{{ cake.title }}">
             {% endif %}
             {% endfor %}

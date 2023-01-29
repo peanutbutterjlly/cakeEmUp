@@ -33,9 +33,7 @@ class PostImage(models.Model):
     post = models.ForeignKey(
         Post, default=None, on_delete=models.CASCADE, related_name="images"
     )
-    images = ResizedImageField(
-        size=[300, None], force_format="WebP", quality=1, upload_to="img/post/"
-    )
+    images = ResizedImageField(force_format="WebP", quality=1, upload_to="img/post/")
 
     def __str__(self):
         return self.post.title
