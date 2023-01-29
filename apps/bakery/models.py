@@ -34,7 +34,7 @@ class PostImage(models.Model):
         Post, default=None, on_delete=models.CASCADE, related_name="images"
     )
     images = ResizedImageField(
-        size=[300, None], force_format="WebP", quality=0.99, upload_to="img/post/"
+        size=[300, None], force_format="WebP", quality=1, upload_to="img/post/"
     )
 
     def __str__(self):
