@@ -2,9 +2,6 @@ from decouple import config
 
 from .base import *
 
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -32,19 +29,23 @@ AWS_DEFAULT_ACL = None
 
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "TIMEOUT": 60 * 60 * 24,
+    }
+}
 
-MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
+CACHE_MIDDLEWARE_ALIAS = "default"
 
-MIDDLEWARE.insert(
-    1,
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-)
+CACHE_MIDDLEWARE_SECONDS = 60 * 60 * 24
+
+CSRF_COOKIE_SECURE = True
+
+CSRF_COOKIE_HTTPONLY = True
 
 DEFAULT_FILE_STORAGE = "cake_order_project.backends.MediaStorage"
 
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
 
 DEBUG = False
 
@@ -68,4 +69,19 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
+MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
+
+MIDDLEWARE.insert(
+    1,
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+)
+
+MIDDLEWARE += [
+    "django.middleware.cache.UpdateCacheMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",
+]
+
 SECURE_SSL_REDIRECT = True
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
