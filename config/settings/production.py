@@ -88,5 +88,3 @@ MIDDLEWARE += [
 ]
 
 SECURE_SSL_REDIRECT = True
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
