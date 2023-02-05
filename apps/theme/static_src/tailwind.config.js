@@ -48,6 +48,9 @@ module.exports = {
         bg_secondary: '#fab490',
         dark_pink: '#DE9574',
       },
+      fontFamily: {
+        sans: ['Montserrat'],
+      },
     },
   },
   plugins: [
