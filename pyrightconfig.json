@@ -1,0 +1,6 @@
+{
+  "show_view_status": false,
+  "show_diagnostics_in_view_status": false,
+  "venvPath": ".",
+  "venv": "venv"
+}
